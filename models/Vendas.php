@@ -1,22 +1,4 @@
 <?php
-
-/*
-Após a conclusão da classe Produto, deve-se criar a classe Venda, que herdará os
-atributos da classe produto, possuindo em seus próprios atributos a quantidade e
-desconto.
-Dentro da classe `Venda`, devem ser implementados os seguintes métodos:
-- getVenda;
-- setVenda.
-O método setVenda é responsável pelo registro da venda. Inicialmente, ele deve
-verificar se o produto está cadastrado. Em caso afirmativo, deve validar o estoque do
-produto e, em seguida, permitir a venda do produto. Após a conclusão da venda, é
-necessário utilizar o método getVenda para exibir a última venda registrada e informar o
-estoque atual do produto. 
-*/
-include_once('../exceptions/ValidacaoException.php');
-include_once('../exceptions/SemCadastroException.php');
-include_once('../exceptions/EstoqueInsuficienteException.php');
-require_once 'Produtos.php';
 class Venda {
     //vendas contem produto e não herda de produto, afinal, venda não é um produto
     private $produto = NULL; 
@@ -68,28 +50,4 @@ class Venda {
         <br>Desconto = $this->desconto;
         <br>Estoque Atual do Produto = $atributosProduto[quantidade]; ";
     }
-}
-
-$produto1 = new Produto();
-$produto2 = new Produto();
-$venda1 = new Venda();
-
-$dadosProduto = array(
-    'nome' => 'A',
-    'preco' => 19.99,
-    'quantidade' => 50
-);
-
-$dadosVenda = array(
-    'produto' => $produto1,
-    'quantidade' => 50,
-    'desconto' => 0.2
-);
-
-try {
-    $produto1->setProduto($dadosProduto);
-    $venda1->setVenda($dadosVenda);
-    $venda1->getVenda();
-} catch (ValidacaoException | SemCadastroException | EstoqueInsuficienteException | Exception $e) {
-    error_log($e->getMessage(), 0);
 }

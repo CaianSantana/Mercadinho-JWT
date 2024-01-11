@@ -1,16 +1,4 @@
 <?php
-/*
-A aplicação deve incluir uma classe responsável pelo cadastro
-de produtos, com os atributos de nome, preço e quantidade. A classe Produto deve
-conter um método setProduto, que terá um parâmetro chamado data, representando
-um array contendo informações como nome, preço e quantidade. Esse método será
-responsável por cadastrar o produto e alimentar os atributos da classe. Além disso, a
-classe deve possuir o método getProduto, que será responsável apenas por exibir o
-produto atualmente cadastrado.
-*/
-include_once('../exceptions/ValidacaoException.php');
-include_once('../exceptions/SemCadastroException.php');
-include_once('../exceptions/EstoqueInsuficienteException.php');
 class Produto {
     private $nome;
     private $preco;
