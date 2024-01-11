@@ -14,11 +14,12 @@ class Produto implements validador{
     public $nome;
     public $preco;
     public $quantidade;
+    public $cadastrado = false;
 
     public function validar($vetor) {
         // Atributos esperados para a classe Produto
         $atributosEsperados = array('nome', 'preco', 'quantidade');
-        // Verifica se todos os atributos esperados existem no vetor
+        // Verifica se todos os atributos esperados existem no vetor e se estão ou não vazios
         foreach ($atributosEsperados as $atributo) {
             if (empty($vetor[$atributo])) {
                 return false;
@@ -29,7 +30,7 @@ class Produto implements validador{
     
     public function setProduto($data) {
         if (!$this->validar($data)) {
-            echo "Erro!<br>";
+            echo "<br>Erro!";
             error_log("Vetor incompleto ou incorreto.", 0);
             return;
         }
@@ -37,16 +38,26 @@ class Produto implements validador{
         $this->nome = $data['nome'];
         $this->preco = $data['preco'];
         $this->quantidade = $data['quantidade'];
+        $this->cadastrado = true;
     
-        echo "Produto $this->nome registrado!<br>";
-        echo "Nome: $this->nome, Preço: $this->preco, Quantidade: $this->quantidade";
+        echo "<br>Produto $this->nome registrado!";
+        $this->getProduto();
+    }
+
+    public function getProduto(){
+        if(!$this->cadastrado){
+            echo "<br>Produto não cadastrado!";
+            return;
+        }
+        echo "<br>Nome: $this->nome, Preço: $this->preco, Quantidade: $this->quantidade";
     }
     
     
 }
 
 // Exemplo de uso da classe Produto
-$produto = new Produto();
+$produto1 = new Produto();
+$produto2 = new Produto();
 
 // Dados a serem cadastrados em forma de array
 $dados = array(
@@ -56,6 +67,7 @@ $dados = array(
 );
 
 // Chamando o método setProduto para cadastrar os dados
-$produto->setProduto($dados);
+$produto1->setProduto($dados);
+$produto2->getProduto();
 
 
