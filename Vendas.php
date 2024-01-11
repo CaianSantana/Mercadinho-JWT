@@ -15,17 +15,33 @@ estoque atual do produto.
 */
 
 require_once 'Validador.php';
-class Vendas implements Validador{
-    private $produto;
+require_once 'Produtos.php';
+class Venda implements Validador{
+    private $produto; //vendas contem produto e não herda de produto, afinal, venda não é um produto
     private $quantidade;
     private $desconto;
 
     public function validar($vetor) { // Verifica se todos os atributos esperados existem no vetor e se estão ou não vazios
-        $atributosEsperados = array('produto', 'quantidade');
+        $atributosEsperados = array('produto', 'quantidade', 'desconto');
         foreach ($atributosEsperados as $atributo) {
-            if (empty($vetor[$atributo])) {
-                echo "<br>Erro!";
+            if (!isset($vetor[$atributo])) {
+                echo "<br>Erro na venda!";
                 error_log("Vetor incompleto ou incorreto.", 0);
+                return false;
+            }
+            if(!$vetor['produto'] instanceof Produto){
+                echo "<br>Erro na venda!";
+                error_log("Este produto não é instância de Produto.", 0);
+                return false;
+            }
+            elseif(!is_int($vetor['quantidade']) || $vetor['quantidade']<0){
+                echo "<br>Erro na venda!";
+                error_log("Quantidade inválida.", 0);
+                return false;
+            }
+            elseif(!is_int($vetor['desconto']) || $vetor['desconto']<0 || $vetor['desconto']>100){
+                echo "<br>Erro na venda!";
+                error_log("Desconto inválido.", 0);
                 return false;
             }
         }
@@ -36,5 +52,33 @@ class Vendas implements Validador{
         if(!$this->validar($vetorProduto)){
             return;
         }
+        $vetorProduto['produto']->vender($vetorProduto['quantidade']);
+        $vetorProduto['produto']->getProduto();
     }
 }
+
+// Exemplo de uso da classe Produto
+$produto1 = new Produto();
+$venda1 = new Venda();
+
+// Dados a serem cadastrados em forma de array
+$dadosProduto = array(
+    'nome' => 'A',
+    'preco' => 19.99,
+    'quantidade' => 50
+);
+
+// Dados a serem cadastrados em forma de array
+$dadosVenda = array(
+    'produto' => $produto1,
+    'quantidade' => 20,
+    'desconto' => 100
+);
+
+// Chamando o método setProduto para cadastrar os dados
+$produto1->setProduto($dadosProduto);
+$produto1->getProduto();
+$venda1->setVenda($dadosVenda);
+$produto1->vender(10);
+$produto1->getProduto();
+$produto2->getProduto();

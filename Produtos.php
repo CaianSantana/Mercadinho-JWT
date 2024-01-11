@@ -62,9 +62,9 @@ class Produto implements validador{
         if(!$this->verificaCadastro()){
             return;
         }
-        if(!is_int($quantidadeVendida) || $quantidadeVendida<0 || $quantidadeVendida> $this->quantidade){
+        if($quantidadeVendida> $this->quantidade){
             echo "<br>Erro!";
-            error_log("Quantidade inválida.", 0);
+            error_log("Quantidade acima do estoque.", 0);
             return;
         }
         $this->quantidade -= $quantidadeVendida;
@@ -81,13 +81,6 @@ $dados = array(
     'preco' => 19.99,
     'quantidade' => 50
 );
-
-// Chamando o método setProduto para cadastrar os dados
-$produto1->setProduto($dados);
-$produto1->getProduto();
-$produto1->vender(10);
-$produto1->getProduto();
-$produto2->getProduto();
 
 
 
