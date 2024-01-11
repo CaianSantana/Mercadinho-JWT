@@ -7,6 +7,12 @@ include_once('exceptions/SemCadastroException.php');
 include_once('exceptions/EstoqueInsuficienteException.php');
 
 class App{
+
+    public static function main(){
+        $app = new App();
+        $app->run();
+    }
+
     public function run(){
         $produto1 = new Produto();
         $produto2 = new Produto();
@@ -29,16 +35,12 @@ class App{
             $venda1->setVenda($dadosVenda);
             $venda1->getVenda();
         } catch (ValidacaoException | SemCadastroException | EstoqueInsuficienteException | Exception $e) {
-            error_log($e->getMessage(), 0);
+            $message = $e->getMessage();
+            echo "<br>$message";
+            error_log($e, 0);
         }
     }
 }
 
-class Main{
-    public static function main(){
-        $app = new App();
-        $app->run();
-    }
-}
 
-Main::main();
+App::main();
