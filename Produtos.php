@@ -21,6 +21,8 @@ class Produto implements validador{
         $atributosEsperados = array('nome', 'preco', 'quantidade');
         foreach ($atributosEsperados as $atributo) {
             if (empty($vetor[$atributo])) {
+                echo "<br>Erro!";
+                error_log("Vetor incompleto ou incorreto.", 0);
                 return false;
             }
         }
@@ -38,8 +40,6 @@ class Produto implements validador{
     
     public function setProduto($data) {
         if (!$this->validar($data)) {
-            echo "<br>Erro!";
-            error_log("Vetor incompleto ou incorreto.", 0);
             return;
         }
     
