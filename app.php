@@ -1,5 +1,4 @@
 <?php
-namespace MercadinhoJWT;
 
 include_once('models/Produto.php');
 include_once('models/Venda.php');
@@ -42,6 +41,7 @@ class App{
             $produto1->setProduto($dadosProduto);
             $venda1->setVenda($dadosVenda);
             $venda1->getVenda();
+            $produto2->getProduto();
         } catch (ValidacaoException | SemCadastroException | EstoqueInsuficienteException | Exception $e) {
             //Mostra a mensagem da exceção na tela do usuário e mostra o nome da exceção no log
             $message = $e->getMessage();

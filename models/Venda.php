@@ -1,5 +1,4 @@
 <?php
-namespace MercadinhoJWT;
 class Venda {
     //vendas contem produto e não herda de produto, afinal, venda não é um produto
     private $produto = NULL; 
@@ -14,7 +13,7 @@ class Venda {
         //verifica cada elemento do array "vetor"
         foreach ($atributosEsperados as $atributo) {
             if (!isset($vetor[$atributo])) {
-                throw new ValidacaoException("Vetor incompleto ou incorreto.");
+                throw new ValidacaoException("O vetor fornecido não contém o atributo necessário: $atributo.");
             }
             if(!$vetor['produto'] instanceof Produto){
                 throw new ValidacaoException("Este produto não é instância da classe Produto.");
@@ -45,8 +44,9 @@ class Venda {
     public function getVenda(){
         $atributosProduto =  $this->produto;
         if($atributosProduto == NULL){
-            throw new Exception("Venda inválida.");
+            throw new Exception("Venda inexistente.");
         }
+        //mostra um relátório da venda na tela
         echo "<br>Última venda realizada:
         <br>Produto = $atributosProduto[nome];
         <br>Quantidade = $this->quantidade;

@@ -1,10 +1,9 @@
 <?php
-namespace MercadinhoJWT;
 class Produto {
     private $nome;
     private $preco;
     private $quantidade;
-     //booleano usado para verificar se o produto já foi preenchido com informações válidas
+    //booleano usado para verificar se o produto já foi preenchido com informações válidas
     private $cadastrado = false;
 
     // Verifica se todos os atributos esperados existem no vetor, são do tipo correto e se estão ou não vazios
@@ -14,7 +13,7 @@ class Produto {
         //verifica cada elemento do array "vetor"
         foreach ($atributosEsperados as $atributo) {
             if (empty($vetor[$atributo])) {
-                throw new ValidacaoException('Vetor incompleto ou incorreto.');
+                throw new ValidacaoException("O vetor fornecido não contém o atributo necessário: $atributo.");
             }
             if(!is_string($vetor['nome'])){
                 throw new ValidacaoException('Nome precisa ser uma String.');
@@ -31,7 +30,7 @@ class Produto {
     //verifica se o produto não está cadastrado e, se não estiver, lança exceção informando isso. 
     public function verificaCadastro(){ 
         if(!$this->cadastrado){ 
-            throw new SemCadastroException('Produto não cadastrado.');
+            throw new SemCadastroException("O produto não está cadastrado.");
         }
     }
     
@@ -62,7 +61,7 @@ class Produto {
         //Assim como a verificação do cadastro, eu coloquei a validação se a quantidade vendida é maior ou não do que o estoque disponível em produto
         //pois é obrigação de produto saber se ele tem ou não estoque o suficiente
         if($quantidadeRetirada> $this->quantidade){
-            throw new EstoqueInsuficienteException('Quantidade acima do estoque.');
+            throw new EstoqueInsuficienteException("A quantidade solicitada excede o estoque disponível.");
         }
         $this->quantidade -= $quantidadeRetirada;
     }
