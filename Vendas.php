@@ -14,9 +14,8 @@ necessário utilizar o método getVenda para exibir a última venda registrada e
 estoque atual do produto. 
 */
 
-require_once 'Validador.php';
 require_once 'Produtos.php';
-class Venda implements Validador{
+class Venda {
     private $produto = NULL; //vendas contem produto e não herda de produto, afinal, venda não é um produto
     private $valor = 0;
     private $quantidade = 0;

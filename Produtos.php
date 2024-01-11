@@ -8,9 +8,8 @@ responsável por cadastrar o produto e alimentar os atributos da classe. Além d
 classe deve possuir o método getProduto, que será responsável apenas por exibir o
 produto atualmente cadastrado.
 */
-require_once 'Validador.php';
 
-class Produto implements validador{
+class Produto {
     private $nome;
     private $preco;
     private $quantidade;
