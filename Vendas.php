@@ -52,8 +52,10 @@ class Venda implements Validador{
         if(!$this->validar($vetorProduto)){
             return;
         }
-        $vetorProduto['produto']->vender($vetorProduto['quantidade']);
-        $vetorProduto['produto']->getProduto();
+        $vetorProduto['produto']->diminuirEstoque($vetorProduto['quantidade']);
+        $this->$produto = $vetorProduto['produto']->getProduto();
+        $this->$quantidade = $vetorProduto['quantidade'];
+        $this->$desconto = $vetorProduto['desconto'];
     }
 }
 
@@ -63,7 +65,7 @@ $venda1 = new Venda();
 
 // Dados a serem cadastrados em forma de array
 $dadosProduto = array(
-    'nome' => 'A',
+    'jORGE' => 'A',
     'preco' => 19.99,
     'quantidade' => 50
 );
@@ -79,6 +81,6 @@ $dadosVenda = array(
 $produto1->setProduto($dadosProduto);
 $produto1->getProduto();
 $venda1->setVenda($dadosVenda);
-$produto1->vender(10);
+$produto1->diminuirEstoque(10);
 $produto1->getProduto();
 $produto2->getProduto();

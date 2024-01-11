@@ -30,7 +30,7 @@ class Produto implements validador{
     }
 
     public function verificaCadastro(){ //verifica se o produto não está cadastrado e, se não estiver, exibe log informando isso. 
-        if(!$this->cadastrado){
+        if(!$this->cadastrado){ 
             echo "<br>Erro!";
             error_log("Produto não cadastrado.", 0);
             return false;
@@ -52,22 +52,23 @@ class Produto implements validador{
     }
 
     public function getProduto(){ //Caso esteja cadastrado, exibe suas informações
-        if(!$this->verificaCadastro()){
-            return;
+        if(!$this->verificaCadastro()){ //chamei o método de verificação de cadastro dentro de outros métodos em Produto, pois a responsábilidade de saber ele está cadastrado ou não é dele, não de vendas. Ao fazer isso, tornei a validação do produto transparente na classe de Venda
+            return NULL;
         }
         echo "<br>Nome: $this->nome, Preço: $this->preco, Quantidade: $this->quantidade";
+        return $this;
     }
     
-    public function vender($quantidadeVendida){//Caso esteja cadastrado, retira a quantidade exigida do estoque
+    public function diminuirEstoque($quantidadeRetirada){//Caso esteja cadastrado, retira a quantidade exigida do estoque
         if(!$this->verificaCadastro()){
             return;
         }
-        if($quantidadeVendida> $this->quantidade){
+        if($quantidadeRetirada> $this->quantidade){//Assim como a verificação do cadastro, eu coloquei a validação se a quantidade vendida é maior ou não do que o estoque disponível em produto, pois é obrigação de produto saber se ele tem ou não estoque o suficiente
             echo "<br>Erro!";
             error_log("Quantidade acima do estoque.", 0);
             return;
         }
-        $this->quantidade -= $quantidadeVendida;
+        $this->quantidade -= $quantidadeRetirada;
     }
 }
 
