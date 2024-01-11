@@ -8,11 +8,7 @@ responsável por cadastrar o produto e alimentar os atributos da classe. Além d
 classe deve possuir o método getProduto, que será responsável apenas por exibir o
 produto atualmente cadastrado.
 */
-
-
-interface validador{
-    public function validar($dados);
-}
+require_once 'Validador.php';
 
 class Produto implements validador{
     public $nome;
@@ -54,7 +50,7 @@ $produto = new Produto();
 
 // Dados a serem cadastrados em forma de array
 $dados = array(
-    'jorge' => 'A',
+    'nome' => 'A',
     'preco' => 19.99,
     'quantidade' => 50
 );
