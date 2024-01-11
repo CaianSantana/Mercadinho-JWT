@@ -7,6 +7,7 @@ class Produto {
     private $cadastrado = false;
 
     // Verifica se todos os atributos esperados existem no vetor, são do tipo correto e se estão ou não vazios
+    //se não estiverem de acordo com o exigido, lança exceção informando isso.
     public function validar($vetor) {
         $atributosEsperados = array('nome', 'preco', 'quantidade');
         //verifica cada elemento do array "vetor"
@@ -26,7 +27,7 @@ class Produto {
         }
     }
 
-    //verifica se o produto não está cadastrado e, se não estiver, exibe log informando isso. 
+    //verifica se o produto não está cadastrado e, se não estiver, lança exceção informando isso. 
     public function verificaCadastro(){ 
         if(!$this->cadastrado){ 
             throw new SemCadastroException('Produto não cadastrado.');
@@ -54,6 +55,7 @@ class Produto {
     }
     
     //Caso esteja cadastrado, retira a quantidade exigida do estoque
+    //se não estiver de acordo com o exigido, lança exceção informando isso.
     public function diminuirEstoque($quantidadeRetirada){
         $this->verificaCadastro();
         //Assim como a verificação do cadastro, eu coloquei a validação se a quantidade vendida é maior ou não do que o estoque disponível em produto
