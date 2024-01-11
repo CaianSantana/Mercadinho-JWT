@@ -11,10 +11,10 @@ produto atualmente cadastrado.
 require_once 'Validador.php';
 
 class Produto implements validador{
-    public $nome;
-    public $preco;
-    public $quantidade;
-    public $cadastrado = false; //booleano usado para verificar se o produto já foi preenchido com informações válidas
+    private $nome;
+    private $preco;
+    private $quantidade;
+    private $cadastrado = false; //booleano usado para verificar se o produto já foi preenchido com informações válidas
 
     public function validar($vetor) { // Verifica se todos os atributos esperados existem no vetor e se estão ou não vazios
         // Atributos esperados para a classe Produto

@@ -15,5 +15,7 @@ estoque atual do produto.
 */
 
 class Vendas{
+    private $quantidade;
+    private $desconto;
     
 }
