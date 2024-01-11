@@ -1,4 +1,5 @@
 <?php
+namespace MercadinhoJWT;
 class Venda {
     //vendas contem produto e não herda de produto, afinal, venda não é um produto
     private $produto = NULL; 

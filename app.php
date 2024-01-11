@@ -1,4 +1,5 @@
 <?php
+namespace MercadinhoJWT;
 
 include_once('models/Produto.php');
 include_once('models/Venda.php');

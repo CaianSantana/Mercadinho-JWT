@@ -1,4 +1,5 @@
 <?php
+namespace MercadinhoJWT;
 class Produto {
     private $nome;
     private $preco;
