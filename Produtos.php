@@ -26,6 +26,15 @@ class Produto implements validador{
         }
         return true;
     }
+
+    public function verificaCadastro(){ //verifica se o produto não está cadastrado e, se não estiver, exibe log informando isso. 
+        if(!$this->cadastrado){
+            echo "<br>Erro!";
+            error_log("Produto não cadastrado.", 0);
+            return false;
+        }
+        return true;
+    }
     
     public function setProduto($data) {
         if (!$this->validar($data)) {
@@ -42,16 +51,17 @@ class Produto implements validador{
         echo "<br>Produto $this->nome registrado!";
     }
 
-    public function getProduto(){ //verifica se o produto não está cadastrado e, se não estiver, exibe log informando isso. Caso esteja cadastrado, exibe suas informações
-        if(!$this->cadastrado){
-            echo "<br>Erro!";
-            error_log("Produto não cadastrado.", 0);
+    public function getProduto(){ //Caso esteja cadastrado, exibe suas informações
+        if(!$this->verificaCadastro()){
             return;
         }
         echo "<br>Nome: $this->nome, Preço: $this->preco, Quantidade: $this->quantidade";
     }
     
-    public function vender($quantidadeVendida){
+    public function vender($quantidadeVendida){//Caso esteja cadastrado, retira a quantidade exigida do estoque
+        if(!$this->verificaCadastro()){
+            return;
+        }
         if(!is_int($quantidadeVendida) || $quantidadeVendida<0 || $quantidadeVendida> $this->quantidade){
             echo "<br>Erro!";
             error_log("Quantidade inválida.", 0);

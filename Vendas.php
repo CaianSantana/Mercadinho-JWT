@@ -14,8 +14,23 @@ necessário utilizar o método getVenda para exibir a última venda registrada e
 estoque atual do produto. 
 */
 
-class Vendas{
+require_once 'Validador.php';
+class Vendas implements Validador{
+    private $produto;
     private $quantidade;
     private $desconto;
-    
+
+    public function validar($vetor) { // Verifica se todos os atributos esperados existem no vetor e se estão ou não vazios
+        $atributosEsperados = array('produto', 'quantidade');
+        foreach ($atributosEsperados as $atributo) {
+            if (empty($vetor[$atributo])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public function setVenda($vetorProduto){
+        
+    }
 }
