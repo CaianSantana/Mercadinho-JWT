@@ -56,7 +56,7 @@ class Produto implements validador{
             return NULL;
         }
         echo "<br>Nome: $this->nome, Preço: $this->preco, Quantidade: $this->quantidade";
-        return $this;
+        return array('nome' => $this->nome, 'preco' => $this->preco, 'quantidade' => $this->quantidade);
     }
     
     public function diminuirEstoque($quantidadeRetirada){//Caso esteja cadastrado, retira a quantidade exigida do estoque
