@@ -41,7 +41,6 @@ class Produto implements validador{
         $this->cadastrado = true;
     
         echo "<br>Produto $this->nome registrado!";
-        $this->getProduto();
     }
 
     public function getProduto(){
@@ -68,6 +67,8 @@ $dados = array(
 
 // Chamando o método setProduto para cadastrar os dados
 $produto1->setProduto($dados);
+$produto1->getProduto();
 $produto2->getProduto();
+
 
 
