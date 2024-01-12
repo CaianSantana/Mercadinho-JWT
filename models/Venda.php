@@ -22,7 +22,7 @@ class Venda {
                 throw new ValidacaoException("Quantidade precisa ser int, não pode ser negativo e não pode ser maior do que quantidade em estoque.");
             }
             elseif(!is_float($vetor['desconto']) || $vetor['desconto']<0 || $vetor['desconto']>1){
-                throw new ValidacaoException("Desconto precisa ser float, não pode ser negativo e nem maior que 0.");
+                throw new ValidacaoException("Desconto precisa ser float, não pode ser negativo e nem maior que 1.");
             }
         }
         return true;
