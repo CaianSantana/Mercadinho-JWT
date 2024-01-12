@@ -47,10 +47,9 @@ class Produto {
         echo "<br>Produto $this->nome registrado!";
     }
 
-    //Caso esteja cadastrado, exibe suas informações
+    //Caso esteja cadastrado, retorna suas informações em forma de array, assim eu posso controlar o quanto eu quero revelar sobre os atributos que a classe possui.
     public function getProduto(){ 
         $this->verificaCadastro();
-        echo "<br>Nome: $this->nome, Preço: $this->preco, Quantidade: $this->quantidade";
         return array('nome' => $this->nome, 'preco' => $this->preco, 'quantidade' => $this->quantidade);
     }
     
@@ -64,5 +63,13 @@ class Produto {
             throw new EstoqueInsuficienteException("A quantidade solicitada excede o estoque disponível.");
         }
         $this->quantidade -= $quantidadeRetirada;
+    }
+
+    //Caso esteja cadastrado, printa suas informações e retorna sua string
+    public function toString(){
+        $this->verificaCadastro();
+        $string = "<br>Nome: $this->nome, Preço: $this->preco, Quantidade: $this->quantidade";
+        echo "$string";
+        return $string;
     }
 }

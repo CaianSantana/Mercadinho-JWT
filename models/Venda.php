@@ -36,7 +36,7 @@ class Venda {
         $this->produto = $vetorProduto['produto']->getProduto();
         $this->quantidade = $vetorProduto['quantidade'];
         $this->desconto = $vetorProduto['desconto'];
-        $this->valor = $this->produto['preco'] - $this->produto['preco']*$this->desconto;
+        $this->valor = ($this->produto['preco'] - $this->produto['preco']*$this->desconto)*$this->quantidade;
     }
 
     //Caso a venda seja válida, exibe ela

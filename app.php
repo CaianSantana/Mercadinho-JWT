@@ -32,16 +32,18 @@ class App{
 
         $dadosVenda = array(
             'produto' => $produto1,
-            'quantidade' => 50,
+            'quantidade' => 10,
             'desconto' => 0.2
         );
 
         //as exceções lançadas durante a execução são tratadas aqui.
         try {
             $produto1->setProduto($dadosProduto);
+            $produto1->toString();
             $venda1->setVenda($dadosVenda);
             $venda1->getVenda();
-            $produto2->getProduto();
+            $produto1->toString();
+            $produto2->toString();
         } catch (ValidacaoException | SemCadastroException | EstoqueInsuficienteException | Exception $e) {
             //Mostra a mensagem da exceção na tela do usuário e mostra o nome da exceção no log
             $message = $e->getMessage();
